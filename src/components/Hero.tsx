@@ -1,19 +1,9 @@
-import { useEffect } from 'react';
 import { useI18n } from '../i18n';
 import { Rocket, ArrowRight } from 'lucide-react';
-import initFluidCursor from '../hooks/useFluidCursor';
-import DotParticleCanvas from './DotParticleCanvas';
+import FluidCursorCanvas from './FluidCursorCanvas';
 
 export default function Hero() {
   const { t } = useI18n();
-
-  useEffect(() => {
-    // Guard against React StrictMode double-invocation
-    const canvas = document.getElementById('fluid') as HTMLCanvasElement | null;
-    if (!canvas || canvas.dataset.fluidInit) return;
-    canvas.dataset.fluidInit = '1';
-    initFluidCursor();
-  }, []);
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -28,11 +18,7 @@ export default function Hero() {
 
   return (
     <section className="hero" id="hero">
-      {/* WebGL fluid simulation — fills full hero background */}
-      <canvas id="fluid" className="hero-fluid-canvas" />
-
-      {/* Click particle bursts inside the hero */}
-      <DotParticleCanvas particleColor="255, 130, 92" />
+      <FluidCursorCanvas />
 
       {/* Subtle CSS grid texture overlay */}
       <div className="hero-grid-pattern" />
