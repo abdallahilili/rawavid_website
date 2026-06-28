@@ -1,5 +1,5 @@
 import { useI18n } from '../i18n';
-import { Rocket, ArrowRight } from 'lucide-react';
+import {  ArrowRight } from 'lucide-react';
 import FluidCursorCanvas from './FluidCursorCanvas';
 
 export default function Hero() {
@@ -28,10 +28,10 @@ export default function Hero() {
 
       <div className="container" style={{ width: '100%' }}>
         <div className="hero-content">
-          <div className="hero-badge">
+          {/* <div className="hero-badge">
             <span className="hero-badge-pulse" />
             {t.hero.badge}
-          </div>
+          </div> */}
 
           <h1 className="hero-title">{t.hero.title}</h1>
 
@@ -39,7 +39,7 @@ export default function Hero() {
 
           <div className="hero-actions">
             <button className="btn-primary" onClick={() => scrollTo('contact')}>
-              <Rocket size={16} />
+              {/* <Rocket size={16} /> */}
               {t.hero.cta_primary}
             </button>
             <button className="btn-outline" onClick={() => scrollTo('portfolio')}>

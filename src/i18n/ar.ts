@@ -1,6 +1,8 @@
 const ar = {
   nav: {
     services: 'الخدمات',
+    technologies: 'التقنيات',
+    process: 'منهجيتنا',
     about: 'عن روافد',
     projects: 'المشاريع',
     contact: 'تواصل معنا',

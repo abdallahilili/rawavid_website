@@ -20,6 +20,8 @@ export default function Navbar() {
 
   const navLinks = [
     { label: t.nav.services, id: 'services' },
+    { label: t.nav.technologies, id: 'technologies' },
+    { label: t.nav.process, id: 'process' },
     { label: t.nav.about, id: 'whyus' },
     { label: t.nav.projects, id: 'portfolio' },
   ];
@@ -32,12 +34,11 @@ export default function Navbar() {
             {/* Logo */}
             <div className="navbar-logo" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
               <img
-                src="/img/svg/logo.svg"
+                src="/img/svg/rawafid_nav_logo.png"
                 alt="Rawafid"
-                style={{ width: 36, height: 24, filter: 'brightness(0) invert(1)' }}
+                style={{ height: 36, width: 'auto' }}
                 onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
               />
-              <span className="navbar-logo-text">RAWAFID</span>
             </div>
 
             {/* Desktop nav */}

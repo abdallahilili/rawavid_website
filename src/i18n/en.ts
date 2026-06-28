@@ -1,6 +1,8 @@
 const en = {
   nav: {
     services: 'Services',
+    technologies: 'Technologies',
+    process: 'Process',
     about: 'About',
     projects: 'Projects',
     contact: 'Contact',
