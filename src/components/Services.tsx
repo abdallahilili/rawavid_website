@@ -130,43 +130,6 @@ export default function Services() {
             </div>
           </div>
         );
-      case 'training':
-        return (
-          <div className="bento-decorator bento-training-decorator">
-            <div className="circle-pulsar">
-              <div className="pulse-ring ring-1"></div>
-              <div className="pulse-ring ring-2"></div>
-              <div className="pulse-ring ring-3"></div>
-            </div>
-            <div className="training-tags">
-              <span className="tag">Django</span>
-              <span className="tag">Flutter</span>
-              <span className="tag">AWS</span>
-            </div>
-          </div>
-        );
-      case 'cloud':
-        return (
-          <div className="bento-decorator bento-cloud-decorator">
-            <div className="cloud-lines">
-              <svg className="cloud-svg" viewBox="0 0 100 60">
-                <path d="M 10 50 Q 50 10 90 50" fill="none" stroke="rgba(16, 185, 129, 0.15)" strokeWidth="2" strokeDasharray="4 4" />
-                <path d="M 25 45 Q 50 25 75 45" fill="none" stroke="rgba(16, 185, 129, 0.25)" strokeWidth="1.5" />
-              </svg>
-              <div className="cloud-pulse"></div>
-            </div>
-          </div>
-        );
-      case 'support':
-        return null;
-      case 'consulting':
-        return (
-          <div className="bento-decorator bento-consulting-decorator">
-            <div className="consulting-radar">
-              <div className="radar-line"></div>
-            </div>
-          </div>
-        );
       default:
         return null;
     }
