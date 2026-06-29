@@ -1,44 +1,72 @@
 import { useState } from 'react';
 import { useI18n } from '../i18n';
-import { useScrollReveal } from '../hooks/useScrollReveal';
+import { Bot, X, ChevronDown } from 'lucide-react';
 
 export default function FAQ() {
-  const { t } = useI18n();
-  const headerRef = useScrollReveal<HTMLDivElement>();
-  const listRef = useScrollReveal<HTMLDivElement>();
+  const { t, locale } = useI18n();
+  const [isOpen, setIsOpen] = useState(false);
   const [openKey, setOpenKey] = useState<string | null>(null);
 
   const faqKeys = Object.keys(t.faq.items) as Array<keyof typeof t.faq.items>;
 
-  const toggle = (key: string) => setOpenKey((prev) => (prev === key ? null : key));
+  const toggle = (key: string) =>
+    setOpenKey((prev) => (prev === key ? null : key));
 
   return (
-    <section id="faq" style={{ padding: '6rem 0', background: 'var(--c-surface-alt)' }}>
-      <div className="container">
-        <div ref={headerRef} className="section-header centered reveal-up">
-          <div className="section-badge">{t.faq.badge}</div>
-          <h2 className="section-title">{t.faq.title}</h2>
-          <p className="section-subtitle">{t.faq.subtitle}</p>
+    <>
+      {/* Floating bot button */}
+      <button
+        className={`faq-bot-trigger${isOpen ? ' active' : ''}`}
+        onClick={() => setIsOpen((o) => !o)}
+        aria-label="FAQ"
+      >
+        {isOpen ? <X size={22} /> : <Bot size={22} />}
+        {!isOpen && <span className="faq-bot-ping" />}
+      </button>
+
+      {/* Panel */}
+      <div className={`faq-bot-panel${isOpen ? ' open' : ''}`}>
+        {/* Header */}
+        <div className="faq-bot-header">
+          <div className="faq-bot-avatar">
+            <Bot size={17} />
+          </div>
+          <div className="faq-bot-info">
+            <span className="faq-bot-name">{t.faq.title}</span>
+            <span className="faq-bot-status">
+              <span className="faq-bot-dot" />
+              {locale === 'ar' ? 'متاح الآن' : 'Online'}
+            </span>
+          </div>
+          <button className="faq-bot-close" onClick={() => setIsOpen(false)}>
+            <X size={15} />
+          </button>
         </div>
 
-        <div ref={listRef} className="faq-list reveal-up delay-150">
-          {faqKeys.map((key) => {
-            const item = t.faq.items[key];
-            const isOpen = openKey === key;
-            return (
-              <div className={`faq-item${isOpen ? ' open' : ''}`} key={key}>
-                <button className="faq-trigger" onClick={() => toggle(key)}>
-                  <span>{item.q}</span>
-                  <span className="faq-icon">+</span>
-                </button>
-                <div className={`faq-body${isOpen ? ' open' : ''}`}>
-                  <p className="faq-body-inner">{item.a}</p>
+        <div className="faq-bot-body">
+          {/* FAQ accordion */}
+          <div className="faq-bot-list">
+            {faqKeys.map((key) => {
+              const item = t.faq.items[key];
+              const isItemOpen = openKey === key;
+              return (
+                <div
+                  className={`faq-bot-item${isItemOpen ? ' open' : ''}`}
+                  key={key}
+                >
+                  <button className="faq-bot-q" onClick={() => toggle(key)}>
+                    <span>{item.q}</span>
+                    <ChevronDown size={14} className="faq-bot-chevron" />
+                  </button>
+                  <div className="faq-bot-a">
+                    <p>{item.a}</p>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
-    </section>
+    </>
   );
 }

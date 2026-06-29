@@ -67,7 +67,7 @@ function useRevealGroup(count: number) {
 }
 
 export default function Services() {
-  const { t, locale } = useI18n();
+  const { t } = useI18n();
   const headerRef = useScrollReveal<HTMLDivElement>();
   const cardRefs = useRevealGroup(6);
 
