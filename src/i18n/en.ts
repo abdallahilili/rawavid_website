@@ -213,7 +213,7 @@ const en = {
       terms: 'Terms of Service',
     },
     copyright: '© 2024 Rawafid. All rights reserved.',
-    made_in: 'Made with ❤️ in Mauritania 🇲🇷',
+    made_in: 'Made in Mauritania ',
   },
 } as const;
 

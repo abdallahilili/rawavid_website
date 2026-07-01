@@ -82,67 +82,16 @@ export default function Services() {
     card.style.setProperty('--mouse-y', `${y}px`);
   };
 
-  const renderDecorator = (key: keyof typeof SERVICE_META) => {
-    switch (key) {
-      case 'web':
-        return (
-          <div className="bento-decorator bento-web-decorator">
-            <div className="window-header">
-              <span className="dot dot-red"></span>
-              <span className="dot dot-yellow"></span>
-              <span className="dot dot-green"></span>
-            </div>
-            <div className="window-body">
-              <div className="skeleton-nav"></div>
-              <div className="skeleton-hero"></div>
-              <div className="skeleton-grid">
-                <div className="skeleton-item"></div>
-                <div className="skeleton-item"></div>
-                <div className="skeleton-item"></div>
-              </div>
-            </div>
-          </div>
-        );
-      case 'mobile':
-        return (
-          <div className="bento-decorator bento-mobile-decorator">
-            <div className="phone-bezel">
-              <div className="phone-screen">
-                <div className="phone-header">
-                  <span className="phone-time">09:41</span>
-                  <div className="phone-island"></div>
-                </div>
-                <div className="phone-widget">
-                  <div className="widget-header">
-                    <span className="widget-title">Active Users</span>
-                    <span className="widget-status">Live</span>
-                  </div>
-                  <div className="widget-val">12.4k</div>
-                  <div className="phone-chart">
-                    <div className="chart-bar" style={{ height: '35%' }}></div>
-                    <div className="chart-bar" style={{ height: '55%' }}></div>
-                    <div className="chart-bar" style={{ height: '80%' }}></div>
-                    <div className="chart-bar" style={{ height: '60%' }}></div>
-                    <div className="chart-bar" style={{ height: '90%' }}></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        );
-      default:
-        return null;
-    }
-  };
+  // Decorators removed for uniform card sizes
 
   return (
     <section id="services" style={{ padding: '6.5rem 0', background: 'var(--c-surface-alt)', position: 'relative', overflow: 'hidden' }}>
       <div className="services-background-glow"></div>
       <div className="container">
         <div ref={headerRef} className="section-header centered reveal-up">
-          <div className="section-badge">{t.services.badge}</div>
+          {/* <div className="section-badge">{t.services.badge}</div> */}
           <h2 className="section-title">{t.services.title}</h2>
-          <p className="section-subtitle">{t.services.subtitle}</p>
+          {/* <p className="section-subtitle">{t.services.subtitle}</p> */}
         </div>
 
         <div className="services-grid bento-grid">
@@ -165,14 +114,14 @@ export default function Services() {
                 <div className="service-card-border-glow"></div>
                 
                 <div className="service-content-wrapper">
-                  <div className="service-icon" style={{ boxShadow: `0 8px 24px ${meta.bgGlow}` }}>
-                    <Icon size={22} strokeWidth={2.2} />
+                  <div className="service-header">
+                    <h3 className="service-title">{service.title}</h3>
+                    <div className="service-icon" style={{ boxShadow: `0 8px 24px ${meta.bgGlow}` }}>
+                      <Icon size={22} strokeWidth={2.2} />
+                    </div>
                   </div>
-                  <h3 className="service-title">{service.title}</h3>
                   <p className="service-desc">{service.description}</p>
                 </div>
-
-                {renderDecorator(key)}
               </div>
             );
           })}
