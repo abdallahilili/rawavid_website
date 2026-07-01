@@ -87,7 +87,7 @@ export default function Footer() {
               </li>
               <li>
                 <span className="footer-col-link" style={{ cursor: 'default' }}>
-                  Nouakchott 🇲🇷
+                  Nouakchott 
                 </span>
               </li>
             </ul>
