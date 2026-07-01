@@ -39,6 +39,7 @@ const en = {
     badge: 'Tech Stack',
     title: 'Technologies We Master',
     subtitle: 'We leverage the most modern and reliable technologies to build exceptional products.',
+    body: 'We carefully select and master technologies across every layer of the stack — from pixel-perfect frontends to robust backends, scalable cloud infrastructure, and seamless mobile experiences.\n\nEvery tool we adopt is chosen with purpose: proven in production, backed by strong communities, and aligned with your project\'s long-term growth. Our engineers don\'t just use these technologies — they know them deeply, which means faster delivery, cleaner code, and solutions that scale with your business.',
     categories: {
       frontend: 'Frontend',
       backend: 'Backend',

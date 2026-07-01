@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap');
 
 /* ============================================================
    RAWAFID — Premium Design System
@@ -82,7 +82,7 @@ html {
 }
 
 body {
-  font-family: 'Cairo', system-ui, -apple-system, sans-serif;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
   color: var(--c-ink);
   background: var(--c-surface);
   line-height: 1.65;
@@ -1269,78 +1269,122 @@ body.arabic .hero-stat:first-child {
 /* ===========================
    TECHNOLOGIES
    =========================== */
-.tech-filter-pills {
+
+/* Two-column layout */
+.tech-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.tech-text-col {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.625rem;
-  margin-bottom: 2.5rem;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-.tech-filter-pill {
-  padding: 0.45rem 1.1rem;
-  border: 1px solid var(--c-border);
-  border-radius: var(--radius-full);
-  background: var(--c-surface);
-  font-size: 0.825rem;
-  font-weight: 600;
+.tech-body-para {
+  font-size: 0.925rem;
   color: var(--c-ink-muted);
-  cursor: pointer;
-  transition: all var(--t-base);
-  white-space: nowrap;
+  line-height: 1.82;
+  margin-bottom: 1rem;
 }
+.tech-body-para:last-child { margin-bottom: 0; }
 
-.tech-filter-pill:hover {
-  border-color: var(--c-primary);
-  color: var(--c-primary);
-}
-
-.tech-filter-pill.active {
-  background: var(--c-primary);
-  border-color: var(--c-primary);
-  color: #fff;
+@media (max-width: 900px) {
+  .tech-two-col {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .tech-text-col { align-items: center; text-align: center; }
 }
 
 .tech-logo-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(82px, 1fr));
+  gap: 0.75rem;
 }
 
 .tech-logo-card {
+  position: relative;
+  overflow: hidden;
   background: #fff;
-  border-radius: 14px;
+  border-radius: 12px;
   border: 1px solid #e8eaf0;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1.25rem;
-  aspect-ratio: 1;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  height: 80px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   transition: transform var(--t-base), box-shadow var(--t-base);
+  cursor: pointer;
 }
 
 .tech-logo-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
 }
 
 .tech-logo-img {
-  width: 52px;
-  height: 52px;
+  width: 34px;
+  height: 34px;
   object-fit: contain;
+  transition: transform 0.22s ease, opacity 0.22s ease;
+}
+
+/* Overlay slides up on hover/focus */
+.tech-logo-overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--c-primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 0.5rem;
+  transform: translateY(100%);
+  transition: transform 0.22s ease;
+}
+
+.tech-logo-card:hover .tech-logo-overlay,
+.tech-logo-card:focus-within .tech-logo-overlay {
+  transform: translateY(0);
+}
+
+.tech-logo-name {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.tech-logo-cat {
+  font-size: 0.6rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.65);
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 @media (max-width: 600px) {
   .tech-logo-grid {
-    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-    gap: 0.75rem;
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+    gap: 0.5rem;
   }
-
-  .tech-logo-img {
-    width: 40px;
-    height: 40px;
-  }
+  .tech-logo-card { height: 70px; }
+  .tech-logo-img  { width: 28px; height: 28px; }
+  .tech-logo-name { font-size: 0.62rem; }
+  .tech-logo-cat  { font-size: 0.55rem; }
 }
 
 /* ===========================

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useI18n } from '../i18n';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 
@@ -29,69 +28,63 @@ const LOGO_MAP: Record<string, string> = {
 };
 
 type CatKey = 'frontend' | 'backend' | 'mobile' | 'cloud';
-type FilterKey = 'all' | CatKey;
 
 export default function Technologies() {
-  const { t, locale } = useI18n();
-  const headerRef = useScrollReveal<HTMLDivElement>();
-  const bodyRef = useScrollReveal<HTMLDivElement>();
-  const [active, setActive] = useState<FilterKey>('all');
+  const { t } = useI18n();
+  const leftRef  = useScrollReveal<HTMLDivElement>();
+  const rightRef = useScrollReveal<HTMLDivElement>();
 
   const catKeys: CatKey[] = ['frontend', 'backend', 'mobile', 'cloud'];
 
   const allTechs = catKeys.flatMap(k =>
-    (t.technologies.items[k] as readonly string[]).map(name => ({ name, cat: k }))
+    (t.technologies.items[k] as readonly string[]).map(name => ({
+      name,
+      cat: t.technologies.categories[k],
+    }))
   );
 
-  const visible = active === 'all'
-    ? allTechs
-    : allTechs.filter(item => item.cat === active);
-
-  const allLabel = locale === 'ar' ? 'الكل' : 'All';
-
-  const pillLabels: Record<FilterKey, string> = {
-    all:      allLabel,
-    frontend: t.technologies.categories.frontend,
-    backend:  t.technologies.categories.backend,
-    mobile:   t.technologies.categories.mobile,
-    cloud:    t.technologies.categories.cloud,
-  };
+  const paragraphs = t.technologies.body.split('\n\n');
 
   return (
     <section id="technologies" style={{ padding: '6rem 0', background: 'var(--c-section-b)' }}>
       <div className="container">
-        <div ref={headerRef} className="section-header centered reveal-up">
-          <div className="section-badge">{t.technologies.badge}</div>
-          <h2 className="section-title">{t.technologies.title}</h2>
-          <p className="section-subtitle">{t.technologies.subtitle}</p>
-        </div>
+        <div className="tech-two-col">
 
-        <div ref={bodyRef} className="reveal-up delay-200">
-          <div className="tech-filter-pills">
-            {(['all', ...catKeys] as FilterKey[]).map(k => (
-              <button
-                key={k}
-                className={`tech-filter-pill${active === k ? ' active' : ''}`}
-                onClick={() => setActive(k)}
-              >
-                {pillLabels[k]}
-              </button>
+          {/* Left — text */}
+          <div ref={leftRef} className="tech-text-col reveal-up">
+            <div className="section-badge">{t.technologies.badge}</div>
+            <h2 className="section-title" style={{ marginTop: '0.75rem' }}>
+              {t.technologies.title}
+            </h2>
+            <p className="section-subtitle" style={{ marginBottom: '1.5rem' }}>
+              {t.technologies.subtitle}
+            </p>
+            {paragraphs.map((p, i) => (
+              <p key={i} className="tech-body-para">{p}</p>
             ))}
           </div>
 
-          <div className="tech-logo-grid">
-            {visible.map(({ name }) => (
-              <div className="tech-logo-card" key={name} title={name}>
-                <img
-                  src={LOGO_MAP[name] ?? ''}
-                  alt={name}
-                  className="tech-logo-img"
-                  loading="lazy"
-                  onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }}
-                />
-              </div>
-            ))}
+          {/* Right — icons grid */}
+          <div ref={rightRef} className="reveal-up delay-150">
+            <div className="tech-logo-grid">
+              {allTechs.map(({ name, cat }) => (
+                <div className="tech-logo-card" key={name}>
+                  <img
+                    src={LOGO_MAP[name] ?? ''}
+                    alt={name}
+                    className="tech-logo-img"
+                    loading="lazy"
+                    onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                  />
+                  <div className="tech-logo-overlay">
+                    <span className="tech-logo-name">{name}</span>
+                    <span className="tech-logo-cat">{cat}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
+
         </div>
       </div>
     </section>
