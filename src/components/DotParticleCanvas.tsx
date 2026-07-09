@@ -87,7 +87,7 @@ export default function DotParticleCanvas({ particleColor = '255, 130, 92', excl
       window.removeEventListener('click', handleClick);
       cancelAnimationFrame(animFrameRef.current);
     };
-  }, [particleColor, createParticles]);
+  }, [particleColor, createParticles, excludeId]);
 
   return (
     <canvas

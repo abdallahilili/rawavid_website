@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useMemo, createRef } from 'react';
 import { useI18n } from '../i18n';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { Globe, Smartphone, Lightbulb, Cloud, Settings, GraduationCap } from 'lucide-react';
@@ -45,7 +45,7 @@ const SERVICE_META = {
 const DELAYS = ['delay-100', 'delay-200', 'delay-300', 'delay-100', 'delay-200', 'delay-300'];
 
 function useRevealGroup(count: number) {
-  const refs = Array.from({ length: count }, () => useRef<HTMLDivElement>(null));
+  const refs = useMemo(() => Array.from({ length: count }, () => createRef<HTMLDivElement>()), [count]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -61,7 +61,7 @@ function useRevealGroup(count: number) {
     );
     refs.forEach((r) => { if (r.current) observer.observe(r.current); });
     return () => observer.disconnect();
-  }, []);
+  }, [refs]);
 
   return refs;
 }
