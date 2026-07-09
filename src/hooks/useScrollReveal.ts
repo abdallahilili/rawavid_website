@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useMemo, createRef } from 'react';
 
 export function useScrollReveal<T extends HTMLElement = HTMLElement>() {
   const ref = useRef<T>(null);
@@ -27,7 +27,7 @@ export function useScrollReveal<T extends HTMLElement = HTMLElement>() {
 }
 
 export function useScrollRevealMultiple(count: number) {
-  const refs = Array.from({ length: count }, () => useRef<HTMLElement>(null));
+  const refs = useMemo(() => Array.from({ length: count }, () => createRef<HTMLElement>()), [count]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -47,7 +47,7 @@ export function useScrollRevealMultiple(count: number) {
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [refs]);
 
   return refs;
 }
